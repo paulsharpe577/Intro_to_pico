@@ -1,4 +1,9 @@
-
+"""
+Pico W firmware loaded - v1.23.0 (2024-06-02)
+Moves motors fowards, turns then backwards
+Uses a L298N
+Requires dcmotor.py
+"""
 
 from dcmotor import DCMotor
 from machine import Pin, PWM
@@ -15,7 +20,6 @@ pin4 = Pin(6, Pin.OUT)
 enable2 = PWM(Pin(7), frequency)
 
 dc_motor = DCMotor(pin1, pin2, enable)
-
 dc_motor2 = DCMotor(pin3, pin4, enable2)
 
 # Set min duty cycle (15000) and max duty cycle (65535) 
