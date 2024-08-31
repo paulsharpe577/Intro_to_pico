@@ -11,16 +11,16 @@ from time import sleep
 
 frequency = 1000
 
-pin1 = Pin(3, Pin.OUT)
-pin2 = Pin(4, Pin.OUT)
+in1 = Pin(3, Pin.OUT)
+in2 = Pin(4, Pin.OUT)
 enable = PWM(Pin(2), frequency)
 
-pin3 = Pin(5, Pin.OUT)
-pin4 = Pin(6, Pin.OUT)
+in3 = Pin(5, Pin.OUT)
+in4 = Pin(6, Pin.OUT)
 enable2 = PWM(Pin(7), frequency)
 
-dc_motor = DCMotor(pin1, pin2, enable)
-dc_motor2 = DCMotor(pin3, pin4, enable2)
+dc_motor = DCMotor(in1, in2, enable)
+dc_motor2 = DCMotor(in3, in4, enable2)
 
 # Set min duty cycle (15000) and max duty cycle (65535) 
 #dc_motor = DCMotor(pin1, pin2, enable, 15000, 65535)
