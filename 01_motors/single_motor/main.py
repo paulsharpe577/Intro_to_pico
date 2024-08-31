@@ -1,5 +1,4 @@
-# Rui Santos & Sara Santos - Random Nerd Tutorials
-# Complete project details at https://RandomNerdTutorials.com/raspberry-pi-pico-dc-motor-micropython/
+
 
 from dcmotor import DCMotor
 from machine import Pin, PWM
@@ -31,13 +30,13 @@ try:
     dc_motor.stop()
     dc_motor2.stop()
     sleep(0.5)
-    print('Backwards with speed: 60%')
-    dc_motor.backwards(60)
-    dc_motor2.backwards(60)
+    print('Turn with speed: 75%')
+    dc_motor.backwards(75)
+    dc_motor2.forward(75)
     sleep(3)
     print('Forward with speed: 30%')
-    dc_motor.forward(30)
-    dc_motor2.forward(30)
+    dc_motor.backwards(30)
+    dc_motor2.backwards(30)
     sleep(2)
     dc_motor.stop()
     dc_motor2.stop()
