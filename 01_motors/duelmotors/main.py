@@ -38,7 +38,7 @@ try:
     dc_motor.backwards(75)
     dc_motor2.forward(75)
     sleep(3)
-    print('Forward with speed: 30%')
+    print('Backwards with speed: 30%')
     dc_motor.backwards(30)
     dc_motor2.backwards(30)
     sleep(2)
