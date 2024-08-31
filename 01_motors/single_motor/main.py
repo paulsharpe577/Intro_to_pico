@@ -26,8 +26,8 @@ dc_motor2 = DCMotor(pin3, pin4, enable2)
 #dc_motor = DCMotor(pin1, pin2, enable, 15000, 65535)
 
 try:
-    print('Forward with speed: 75%')
     sleep(4)
+    print('Forward with speed: 75%')
     dc_motor.forward(75)
     dc_motor2.forward(75)
     sleep(3)
