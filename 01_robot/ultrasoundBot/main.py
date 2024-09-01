@@ -3,12 +3,11 @@ Pico W firmware loaded - v1.23.0 (2024-06-02)
 ..
 """
 from dcmotor import DCMotor
-from time import sleep
+#from time import sleep
 from machine import Pin, PWM
 import utime
-import time
 frequency = 1000
-time.sleep(2)
+utime.sleep(2)
 
 # Motor setup
 in1 = Pin(3, Pin.OUT)
