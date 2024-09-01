@@ -1,22 +1,24 @@
 """
 Pico W firmware loaded - v1.23.0 (2024-06-02)
+Ultrasound robot- avoids objects
 ..
 """
+#Imports
 from dcmotor import DCMotor
 from machine import Pin, PWM
 import utime
-frequency = 1000
+
+#A sleep to stop brownout of board
 utime.sleep(2)
 
 # Motor setup
+frequency = 1000
 in1 = Pin(3, Pin.OUT)
 in2 = Pin(4, Pin.OUT)
 enable = PWM(Pin(2), frequency)
-
 in3 = Pin(5, Pin.OUT)
 in4 = Pin(6, Pin.OUT)
 enable2 = PWM(Pin(7), frequency)
-
 dc_motor = DCMotor(in1, in2, enable)
 dc_motor2 = DCMotor(in3, in4, enable2)
 
