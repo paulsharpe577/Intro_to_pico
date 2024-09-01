@@ -1,11 +1,14 @@
 """
 Pico W firmware loaded - v1.23.0 (2024-06-02)
+..
 """
 from dcmotor import DCMotor
 from time import sleep
 from machine import Pin, PWM
 import utime
+import time
 frequency = 1000
+time.sleep(2)
 
 # Motor setup
 in1 = Pin(3, Pin.OUT)
@@ -43,12 +46,12 @@ while True:
     if round(distance) <10:
         dc_motor.backwards(40)
         dc_motor2.backwards(40)
-        print("Motors backwards")
-        print("The distance from object is ",round(distance),"cm")
+        #print("Motors backwards")
+        #print("The distance from object is ",round(distance),"cm")
     else:
         dc_motor.forward(40)
         dc_motor2.forward(40)
-        print("Motors forward")
-        print("The distance from object is ",round(distance),"cm")
+        #print("Motors forward")
+        #print("The distance from object is ",round(distance),"cm")
     utime.sleep(0.2)    
     
