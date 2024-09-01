@@ -35,16 +35,20 @@ def ultra():
    while echo.value() == 1:
        signalon = utime.ticks_us()
    timepassed = signalon - signaloff
+   global distance
    distance = (timepassed * 0.0343) / 2
-   print("The distance from object is ",distance,"cm")
+   #print("The distance from object is ",round(distance),"cm")
 while True:
     ultra()
-    if distance <=10:
-        dc_motor.backwards(75)
-        dc_motor2.backwards(75)
+    if round(distance) <10:
+        dc_motor.backwards(40)
+        dc_motor2.backwards(40)
+        print("Motors backwards")
+        print("The distance from object is ",round(distance),"cm")
     else:
-        dc_motor.forward(75)
-        dc_motor2.forward(75)
+        dc_motor.forward(40)
+        dc_motor2.forward(40)
+        print("Motors forward")
+        print("The distance from object is ",round(distance),"cm")
     utime.sleep(0.2)    
     
-
