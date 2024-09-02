@@ -15,8 +15,6 @@ utime.sleep(2)
 
 # Motor setup
 seed(1)
-randomInt = 0
-randomTurn =0
 frequency = 1000
 in1 = Pin(3, Pin.OUT)
 in2 = Pin(4, Pin.OUT)
@@ -32,6 +30,10 @@ distance = 0
 trigger = Pin(12, Pin.OUT)
 echo = Pin(13, Pin.IN)
 
+#Buzzer setup
+buzzerPIN=16
+BuzzerObj = PWM(Pin(buzzerPIN))
+
 def ultra():
    trigger.low()
    utime.sleep_us(2)
@@ -46,6 +48,27 @@ def ultra():
    global distance
    distance = (timepassed * 0.0343) / 2
    #print("The distance from object is ",round(distance),"cm")
+   
+def buzzer(buzzerPinObject,frequency,sound_duration,silence_duration):
+    # Set duty cycle to a positive value to emit sound from buzzer
+    buzzerPinObject.duty_u16(int(65536*0.1))
+    # Set frequency
+    buzzerPinObject.freq(frequency)
+    # wait for sound duration
+    utime.sleep(sound_duration)
+    # Set duty cycle to zero to stop sound
+    buzzerPinObject.duty_u16(int(65536*0))
+    # Wait for sound interrumption, if needed 
+    utime.sleep(silence_duration)
+    
+def buzz():
+    buzzer(BuzzerObj,554,0.8,0.1)
+    buzzer(BuzzerObj,830,0.2,0.1)
+    buzzer(BuzzerObj,830,0.2,0.1)
+    BuzzerObj.deinit()
+
+buzz()
+
 while True:
     ultra()
     randomInt = random.uniform(0.1, 3)
