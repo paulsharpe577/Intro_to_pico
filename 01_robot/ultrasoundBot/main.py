@@ -6,12 +6,16 @@ Ultrasound robot- avoids objects
 #Imports
 from dcmotor import DCMotor
 from machine import Pin, PWM
+from random import seed
+import random
 import utime
 
 #A sleep to stop brownout of board
 utime.sleep(2)
 
 # Motor setup
+seed(1)
+randomInt = 0
 frequency = 1000
 in1 = Pin(3, Pin.OUT)
 in2 = Pin(4, Pin.OUT)
@@ -43,6 +47,7 @@ def ultra():
    #print("The distance from object is ",round(distance),"cm")
 while True:
     ultra()
+    randomInt = random.uniform(0.1, 3)
     if round(distance) <10:
         dc_motor.stop()
         dc_motor2.stop()
@@ -52,7 +57,7 @@ while True:
         utime.sleep(1)
         dc_motor.forward(40)
         dc_motor2.backwards(40)
-        utime.sleep(1)
+        utime.sleep(randomInt)
         #print("Motors backwards")
         #print("The distance from object is ",round(distance),"cm")
     else:
