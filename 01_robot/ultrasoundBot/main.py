@@ -16,6 +16,7 @@ utime.sleep(2)
 # Motor setup
 seed(1)
 randomInt = 0
+randomTurn =0
 frequency = 1000
 in1 = Pin(3, Pin.OUT)
 in2 = Pin(4, Pin.OUT)
@@ -48,18 +49,22 @@ def ultra():
 while True:
     ultra()
     randomInt = random.uniform(0.1, 3)
-    if round(distance) <10:
+    randomTurn = random.randint(0, 1)
+    if round(distance) <20:
         dc_motor.stop()
         dc_motor2.stop()
         utime.sleep(1)   
         dc_motor.backwards(40)
         dc_motor2.backwards(40)
         utime.sleep(1)
-        dc_motor.forward(40)
-        dc_motor2.backwards(40)
-        utime.sleep(randomInt)
-        #print("Motors backwards")
-        #print("The distance from object is ",round(distance),"cm")
+        if randomTurn == 0:
+            dc_motor.forward(40)
+            dc_motor2.backwards(40)
+            utime.sleep(randomInt)
+        else:
+            dc_motor.backwards(40)
+            dc_motor2.forward(40)
+            utime.sleep(randomInt)
     else:
         dc_motor.forward(40)
         dc_motor2.forward(40)
