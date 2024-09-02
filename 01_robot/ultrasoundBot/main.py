@@ -44,8 +44,15 @@ def ultra():
 while True:
     ultra()
     if round(distance) <10:
+        dc_motor.stop()
+        dc_motor2.stop()
+        utime.sleep(1)   
         dc_motor.backwards(40)
         dc_motor2.backwards(40)
+        utime.sleep(1)
+        dc_motor.forward(40)
+        dc_motor2.backwards(40)
+        utime.sleep(1)
         #print("Motors backwards")
         #print("The distance from object is ",round(distance),"cm")
     else:
