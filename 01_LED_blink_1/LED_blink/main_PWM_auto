@@ -1,0 +1,26 @@
+from machine import Pin, PWM
+import time
+
+VCC = 3.3  # Supply voltage in volts
+
+# Define the PWM pin (e.g., GP15)
+pwm_led = PWM(Pin(15))
+
+# Set PWM frequency
+pwm_led.freq(1000)  # Frequency in Hz
+
+def fade_led():
+    """Fades the LED in and out."""
+    for duty_cycle in range(0, 65535, 256):
+        pwm_led.duty_u16(duty_cycle)
+        voltage = (duty_cycle / 65535) * VCC
+        print(f"Fading up: Output voltage ≈ {voltage:.2f} V")
+        time.sleep_ms(7)
+    for duty_cycle in range(65535, 0, -256):
+        pwm_led.duty_u16(duty_cycle)
+        voltage = (duty_cycle / 65535) * VCC
+        print(f"Fading down: Output voltage ≈ {voltage:.2f} V")
+        time.sleep_ms(7)
+
+while True:
+    fade_led()
