@@ -1,0 +1,50 @@
+#Peripheral
+
+import aioble
+import bluetooth
+import asyncio
+from machine import Pin
+
+# BLE UUIDs
+SERVICE_UUID = bluetooth.UUID(0x181A)
+CHAR_UUID = bluetooth.UUID(0x2A6E)
+
+# GPIO Setup
+button = Pin(15, Pin.IN, Pin.PULL_UP)  # use your desired GPIO pin
+
+# BLE
+device_name = "ButtonPeripheral"
+message_last = None
+
+def encode(msg):
+    return msg.encode()
+
+async def send_button_state(characteristic, conn):
+    global message_last
+    while True:
+        state = button.value()
+        message = "OFF" if state else "ON"
+        
+        if message != message_last:
+            print(f"Sending: {message}")
+            try:
+                await characteristic.write(encode(message))
+                message_last = message
+            except Exception as e:
+                print("Write error:", e)
+        
+        await asyncio.sleep(0.1)
+
+async def run():
+    service = aioble.Service(SERVICE_UUID)
+    char = aioble.Characteristic(service, CHAR_UUID, read=True, write=True, notify=True)
+    aioble.register_services(service)
+
+    print("Advertising...")
+    while True:
+        async with await aioble.advertise(2000, name=device_name, services=[SERVICE_UUID]) as conn:
+            print("Connected!")
+            await send_button_state(char, conn)
+            print("Disconnected")
+
+asyncio.run(run())
