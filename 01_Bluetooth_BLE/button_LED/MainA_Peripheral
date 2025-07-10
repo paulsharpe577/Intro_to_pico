@@ -1,4 +1,4 @@
-#Peripheral
+#Peripheral with BUTTON
 
 import aioble
 import bluetooth
