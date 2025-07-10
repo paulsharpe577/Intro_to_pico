@@ -1,4 +1,4 @@
-#CENTRAL
+#CENTRAL with LED
 
 import aioble
 import bluetooth
